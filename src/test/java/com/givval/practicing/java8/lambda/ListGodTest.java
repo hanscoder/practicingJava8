@@ -1,5 +1,6 @@
 package com.givval.practicing.java8.lambda;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -13,16 +14,20 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class ListGodTest {
 
-    @Test
-    public void should_print_out_all_names_to_console() {
-        ByteArrayOutputStream out = outputStream();
+    private List<String> names = new ArrayList<>();
 
-        List<String> names = new ArrayList<>();
+    @Before
+    public void initNames() {
         names.add("Hans");
         names.add("Daniel");
         names.add("The");
         names.add("Lufi");
         names.add("Herbert");
+    }
+
+    @Test
+    public void should_print_out_all_names_to_console() {
+        ByteArrayOutputStream out = outputStream();
 
         new ListGod(names).toConsole();
 
@@ -30,18 +35,21 @@ public class ListGodTest {
     }
 
     @Test
-    public void should_remove_given_problemmanager_from_test_list() {
-        List<String> names = new ArrayList<>();
-        names.add("Hans");
-        names.add("Daniel");
-        names.add("The");
-        names.add("Lufi");
-        names.add("Herbert");
-
+    public void should_remove_given_problemmanager_from_the_list() {
         ListGod god = new ListGod(names);
+
         god.remove("Herbert");
 
         assertThat(god.names(), contains("Hans", "Daniel", "The", "Lufi"));
+    }
+
+    @Test
+    public void should_remove_both_techleads_from_the_list() {
+        ListGod god = new ListGod(names);
+
+        god.removeBoth("Hans", "Daniel");
+
+        assertThat(god.names(), contains("The", "Lufi", "Herbert"));
     }
 
     private ByteArrayOutputStream outputStream() {
