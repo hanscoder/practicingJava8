@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class ListGodTest {
@@ -50,6 +51,15 @@ public class ListGodTest {
         god.removeBoth("Hans", "Daniel");
 
         assertThat(god.names(), contains("The", "Lufi", "Herbert"));
+    }
+
+    @Test
+    public void should_replace_every_with_kaffee_which_starts_with_T() {
+        ListGod god = new ListGod(names);
+
+        god.replaceNamesStarting("T", "Kaffee");
+
+        assertThat(god.names(), contains("Hans", "Daniel", "Kaffee", "Lufi", "Herbert"));
     }
 
     private ByteArrayOutputStream outputStream() {
