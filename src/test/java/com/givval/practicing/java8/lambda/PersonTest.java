@@ -14,9 +14,9 @@ public class PersonTest {
     @Test
     public void should_have_same_name() {
         Person hansInVienna = new Person("Hans", "Towa");
-        Person hansInGermany = new Person("Hans", "Towa");
+        Person hansInGermany = new Person("Hans", "Bend");
 
-        boolean isSameName = hansInVienna.hasSameName(hansInGermany);
+        boolean isSameName = hansInVienna.hasSameFirstname(hansInGermany);
 
         assertThat(isSameName, is(equalTo(true)));
     }
@@ -24,9 +24,9 @@ public class PersonTest {
     @Test
     public void should_have_different_name() {
         Person hansInVienna = new Person("Hans", "Towa");
-        Person hansInGermany = new Person("Hans", "Bowa");
+        Person hansInGermany = new Person("Michi", "Bend");
 
-        boolean isSameName = hansInVienna.hasSameName(hansInGermany);
+        boolean isSameName = hansInVienna.hasSameFirstname(hansInGermany);
 
         assertThat(isSameName, is(equalTo(false)));
     }
