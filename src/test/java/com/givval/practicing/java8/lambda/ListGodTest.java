@@ -54,7 +54,7 @@ public class ListGodTest {
     }
 
     @Test
-    public void should_replace_every_with_kaffee_which_starts_with_T() {
+    public void should_replace_every_name_which_starts_with_T_with_kaffee() {
         ListGod god = new ListGod(names);
 
         god.replaceNamesStarting("T", "Kaffee");
